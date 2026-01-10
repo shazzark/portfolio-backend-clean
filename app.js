@@ -23,7 +23,12 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://172.23.192.1:3002'],
+    origin: [
+      'http://localhost:3000',
+      'http://172.23.192.1:3002',
+      'https://chidozie-portfolio.vercel.app', // Add when you deploy frontend
+      'http://localhost:3001', // For Next.js dev server]
+    ],
     credentials: true,
   }),
 );
