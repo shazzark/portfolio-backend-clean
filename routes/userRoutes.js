@@ -4,7 +4,7 @@ const adminAuth = require('../middleware/adminAuth');
 
 const router = express.Router();
 // PUBLIC ROUTE
-router.get('/', userController.getProfile);
+router.get('/profile', userController.getProfile);
 
 // PROTECTED ROUTE
 router.patch('/profile', adminAuth, userController.updateProfile);

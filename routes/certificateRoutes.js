@@ -1,0 +1,11 @@
+const express = require('express');
+const controller = require('../controllers/certificateController');
+const adminAuth = require('../middleware/adminAuth');
+const router = express.Router();
+router.get('/', controller.getAllCertificates);
+router.get('/:id', controller.getCertificate);
+router.use(adminAuth);
+router.post('/', controller.createCertificate);
+router.patch('/:id', controller.updateCertificate);
+router.delete('/:id', controller.deleteCertificate);
+module.exports = router;

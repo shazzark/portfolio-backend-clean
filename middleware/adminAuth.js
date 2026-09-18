@@ -1,16 +1,17 @@
+const jwt = require('jsonwebtoken');
 const AppError = require('../utils/appError');
 
 const adminAuth = (req, res, next) => {
   try {
-    const adminSecret = req.headers['x-admin-secret'];
+    const token = req.cookies.admin_session;
+    if (!token) return next(new AppError('Authentication is required', 401));
 
-    if (!adminSecret) {
-      return next(new AppError('Admin secret is required', 401));
-    }
-
-    if (adminSecret !== process.env.ADMIN_SECRET) {
-      return next(new AppError('Invalid admin secret', 403));
-    }
+    const payload = jwt.verify(
+      token,
+      process.env.JWT_SECRET || process.env.ADMIN_SECRET,
+    );
+    if (payload.role !== 'admin')
+      return next(new AppError('Admin access is required', 403));
 
     req.isAdmin = true;
     next();

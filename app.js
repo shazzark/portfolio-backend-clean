@@ -18,6 +18,8 @@ const experienceRouter = require('./routes/experienceRoutes');
 // const blogRouter = require('./routes/blogRoutes');
 const projectRouter = require('./routes/projectRoutes');
 const userRouter = require('./routes/userRoutes');
+const certificateRouter = require('./routes/certificateRoutes');
+const adminAuthRouter = require('./routes/adminAuthRoutes');
 
 const app = express();
 
@@ -113,6 +115,8 @@ app.use('/api/v1/experience', experienceRouter);
 // app.use('/api/v1/contact', contactRouter);
 // app.use('/api/v1/blog', blogRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/certificates', certificateRouter);
+app.use('/api/v1/admin', adminAuthRouter);
 
 // app.all('/*', (req, res, next) => {
 //   next(new AppError(`cant find ${req.originalUrl} on this server`));
